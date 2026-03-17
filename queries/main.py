@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from queries.dal import movment_calc_of_priority_targets, count_by_signal_type, identify_possible_targets, query4,query5,query6,query7
+from queries.dal import movment_calc_of_priority_targets, count_by_signal_type, identify_possible_targets, query4, query5, query6
 
 
 app = FastAPI()

@@ -16,16 +16,18 @@ services:
 
 
 
-  # queries:
-  #   build:
-  #     context: .
-  #     dockerfile: queries/Dockerfile
-  #   restart: unless-stopped
-  #   env_file: .env
-  #   networks:
-  #   - digital_hunter2
-  #   depends_on:
-  #   - mysql
+  queries:
+    build:
+      context: .
+      dockerfile: queries/Dockerfile
+    restart: unless-stopped
+    env_file: .env
+    ports:                
+      - "8000:8000"
+    networks:
+    - digital_hunter2
+    depends_on:
+    - mysql
     
     
 

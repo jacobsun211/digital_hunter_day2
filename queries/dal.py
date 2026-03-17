@@ -1,9 +1,12 @@
 import mysql.connector
 from queries.response_builder import query1_to_dict, query2_to_dict, query3_to_dict, qury4_to_dict
 from maps_data.DigitalHunter_map import plot_map_with_geometry
+import os
+
+host = os.getenv("SQL_HOST", "localhost")
 
 db = mysql.connector.connect(
-    host="localhost",
+    host=host,
     port=3306,
     database="digital_hunter",
     user="root",
@@ -61,13 +64,8 @@ def query4():
             """
     cursor.execute(query)
 
-    rows = cursor.fetchall()
-    response = []
-    for row in rows:
-        response.append(row)
-        print(row)
-
-    db.commit()
+    data = cursor.fetchall()
+    response = qury4_to_dict(data)
     return response
 
 def query5(entity):
@@ -92,16 +90,22 @@ def query5(entity):
     return points
 
 def query6():
-    query = """SELECT * FROM attacks LIMIT 5"""
+    query = """ 
+                SELECT da.entity_id
+                FROM damage_assessments AS da
+                LEFT JOIN attacks AS a 
+                    ON da.attack_id = a.attack_id
+                WHERE da.result != 'destroyed'
+                AND a.created_at BETWEEN SUBDATE(a.created_at, INTERVAL 3 HOUR) AND ADDDATE(a.created_at, INTERVAL 3 HOUR) 
+                """# and then the speed calculation based on coord from intel_signals
+    # i know its not even near complete but i didnt have time :\
     cursor.execute(query)
 
     rows = cursor.fetchall()
     response = []
     for row in rows:
         response.append(row)
-        print(row)
 
-    db.commit()
     return response
 
 
