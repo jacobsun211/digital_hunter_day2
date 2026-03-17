@@ -35,7 +35,7 @@ def que5(entity: str):
 @app.get('/6')
 def que6():
     response = query6()
-    return {"number of results:":len(response), "results":response}
+    return response
 
 
 

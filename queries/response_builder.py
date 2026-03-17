@@ -35,3 +35,12 @@ def qury4_to_dict(data):
         response.append(to_dict)
     return response
 
+def qury5_to_dict(data):
+    response = {"initial_lat": data[0][0],
+                "initial_lon": data[0][1],
+                "last_known_lat": data[1][0], 
+                "last_known_lon": data[1][1]}
+    return response
+
+
+
