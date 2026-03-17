@@ -26,8 +26,8 @@ and a little bit of query 6, like, very little
 ### structure:
 the code is in folder "queries"
 
-**main.py:** endpoints
-**dal.py:** actual queries
+**main.py:** endpoints_
+**dal.py:** actual queries_
 **response_builder.py:** wreps the data into json, so it wii be more readable in swagger
 
 
