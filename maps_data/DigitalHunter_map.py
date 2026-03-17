@@ -8,7 +8,7 @@ def plot_map_with_geometry(coords,
 
     fig, ax = plt.subplots(figsize=(8, 10))
 
-    xmin, xmax, ymin, ymax = 34, 36, 29.5, 34 # becouse of this query will return None, the targets are not in these coordinates 
+    xmin, xmax, ymin, ymax = 34, 36, 29.5, 34 # becouse of this, query will return None, the targets are not in these coordinates 
     ax.set_xlim(xmin, xmax)
     ax.set_ylim(ymin, ymax)
     ax.set_aspect('equal', adjustable='datalim')

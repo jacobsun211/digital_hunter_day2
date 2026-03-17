@@ -1,5 +1,5 @@
 import mysql.connector
-from queries.response_builder import query1_to_dict, query2_to_dict, query3_to_dict
+from queries.response_builder import query1_to_dict, query2_to_dict, query3_to_dict, qury4_to_dict
 from maps_data.DigitalHunter_map import plot_map_with_geometry
 
 db = mysql.connector.connect(
@@ -12,39 +12,6 @@ db = mysql.connector.connect(
 cursor = db.cursor()
 
 
-
-def qury4_to_dict(data):
-    response = []
-    for row in data:
-        to_dict = {"entity_id": row[0],
-                   "target_name":row[1],
-                   "priority_level": row[2],
-                   "movement_distance_km": row[3]}
-        response.append(to_dict)
-    return response
-
-
-
-def qury6_to_dict(data):
-    response = []
-    for row in data:
-        to_dict = {"entity_id": row[0],
-                   "target_name":row[1],
-                   "priority_level": row[2],
-                   "movement_distance_km": row[3]}
-        response.append(to_dict)
-    return response
-
-def qury7_to_dict(data):
-    response = []
-    for row in data:
-        to_dict = {"entity_id": row[0],
-                   "target_name":row[1],
-                   "priority_level": row[2],
-                   "movement_distance_km": row[3]}
-        response.append(to_dict)
-    return response
-# ------------------------------------------------------------------
 
 
 def movment_calc_of_priority_targets():
@@ -69,7 +36,6 @@ def count_by_signal_type():
     response = query2_to_dict(data)
     return response
 
-# in line 50, check if OR or AND
 def identify_possible_targets():
     query = """ 
                 SELECT entity_id, COUNT(*) AS number_of_reports
@@ -86,7 +52,13 @@ def identify_possible_targets():
     return response
 
 def query4():
-    query = """SELECT * FROM attacks LIMIT 5"""
+    query = """ 
+                SELECT entity_id
+                FROM intel_signals
+                WHERE EXTRACT(HOUR FROM created_at) BETWEEN 8 AND 19 
+                GROUP BY entity_id
+                HAVING MAX(distance_from_last) = 0
+            """
     cursor.execute(query)
 
     rows = cursor.fetchall()
@@ -105,11 +77,11 @@ def query5(entity):
                     WHERE entity_id = %s
                     """
     last_knowen_points = """
-                SELECT last_known_lat , last_known_lon  
-                FROM targets 
-                WHERE entity_id = %s
-                """
-    cursor.execute(inital_points, [entity])
+                    SELECT last_known_lat , last_known_lon  
+                    FROM targets 
+                    WHERE entity_id = %s
+                    """
+    cursor.execute(inital_points, [entity]) # becouse matplotlib function expects somthing like this: [(35.0, 32.0), (35.2, 32.5)]
     inital_points = cursor.fetchone()
 
     cursor.execute(last_knowen_points, [entity])
@@ -132,21 +104,8 @@ def query6():
     db.commit()
     return response
 
-def query7():
-    query = """SELECT * FROM attacks LIMIT 5"""
-    cursor.execute(query)
 
-    rows = cursor.fetchall()
-    response = []
-    for row in rows:
-        response.append(row)
-        print(row)
-
-    db.commit()
-    return response
 
 
 # python -m quries.dal
 
-# cursor.close()
-# db.close()
