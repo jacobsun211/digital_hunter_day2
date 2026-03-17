@@ -1,5 +1,5 @@
 import mysql.connector
-from queries.response_builder import query1_to_dict, query2_to_dict, query3_to_dict, qury4_to_dict
+from queries.response_builder import query1_to_dict, query2_to_dict, query3_to_dict, qury4_to_dict, qury5_to_dict
 from maps_data.DigitalHunter_map import plot_map_with_geometry
 import os
 
@@ -8,8 +8,6 @@ port = os.getenv("SQL_PORT", 3306)
 database = os.getenv("SQL_DATABASE", "digital_hunter")
 user = os.getenv("SQL_USER", "root")
 password = os.getenv("SQL_PASSWORD", "root")
-
-
 
 
 db = mysql.connector.connect(
@@ -92,7 +90,8 @@ def query5(entity):
 
     points = [inital_points, last_knowen_points]
     plot_map_with_geometry(points) 
-    return points
+    response = qury5_to_dict(points)
+    return response
 
 def query6():
     query = """ 
