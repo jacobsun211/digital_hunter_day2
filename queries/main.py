@@ -37,10 +37,7 @@ def que6():
     response = query6()
     return {"number of results:":len(response), "results":response}
 
-@app.get('/7')
-def que7():
-    response = query7()
-    return {"number of results:":len(response), "results":response}
+
 
 
 # uvicorn queries.main:app --reload

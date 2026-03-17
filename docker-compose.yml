@@ -13,9 +13,6 @@ services:
     networks:
     - digital_hunter2
 
-
-
-
   queries:
     build:
       context: .
@@ -29,8 +26,6 @@ services:
     depends_on:
     - mysql
     
-    
-
 volumes:
   mysql_data:
 

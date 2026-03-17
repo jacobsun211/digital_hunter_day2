@@ -15,8 +15,6 @@ db = mysql.connector.connect(
 cursor = db.cursor()
 
 
-
-
 def movment_calc_of_priority_targets():
     query = """ 
                 SELECT entity_id ,target_name, priority_level, movement_distance_km
@@ -101,9 +99,9 @@ def query6():
     # i know its not even near complete but i didnt have time :\
     cursor.execute(query)
 
-    rows = cursor.fetchall()
+    data = cursor.fetchall()
     response = []
-    for row in rows:
+    for row in data:
         response.append(row)
 
     return response
