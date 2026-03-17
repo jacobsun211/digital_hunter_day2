@@ -5,31 +5,104 @@ db = mysql.connector.connect(
     port=3306,
     database="digital_hunter",
     user="root",
-    password="password"
+    password="root"
 )
-
-
-
 cursor = db.cursor()
 
-cursor.execute("""
-    CREATE TABLE IF NOT EXISTS users (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        name VARCHAR(100),
-        role VARCHAR(50)
-    )
-""")
 
-sql = "INSERT INTO users (name, role) VALUES (%s, %s)"
-values = ("Alice", "Admin")
+def query1():
+    query = """SELECT * FROM attacks LIMIT 5"""
+    cursor.execute(query)
 
-cursor.execute(sql, values)
+    rows = cursor.fetchall()
+    response = []
+    for row in rows:
+        response.append(row)
+        print(row)
 
-db.commit()
-cursor.close()
-db.close()
+    db.commit()
+    return response
 
-print("One record inserted successfully!")
+def query2():
+    query = """SELECT * FROM attacks LIMIT 5"""
+    cursor.execute(query)
+
+    rows = cursor.fetchall()
+    response = []
+    for row in rows:
+        response.append(row)
+        print(row)
+
+    db.commit()
+    return response
+
+def query3():
+    query = """SELECT * FROM attacks LIMIT 5"""
+    cursor.execute(query)
+
+    rows = cursor.fetchall()
+    response = []
+    for row in rows:
+        response.append(row)
+        print(row)
+
+    db.commit()
+    return response
+
+def query4():
+    query = """SELECT * FROM attacks LIMIT 5"""
+    cursor.execute(query)
+
+    rows = cursor.fetchall()
+    response = []
+    for row in rows:
+        response.append(row)
+        print(row)
+
+    db.commit()
+    return response
+
+def query5():
+    query = """SELECT * FROM attacks LIMIT 5"""
+    cursor.execute(query)
+
+    rows = cursor.fetchall()
+    response = []
+    for row in rows:
+        response.append(row)
+        print(row)
+
+    db.commit()
+    return response
+
+def query6():
+    query = """SELECT * FROM attacks LIMIT 5"""
+    cursor.execute(query)
+
+    rows = cursor.fetchall()
+    response = []
+    for row in rows:
+        response.append(row)
+        print(row)
+
+    db.commit()
+    return response
+
+def query7():
+    query = """SELECT * FROM attacks LIMIT 5"""
+    cursor.execute(query)
+
+    rows = cursor.fetchall()
+    response = []
+    for row in rows:
+        response.append(row)
+        print(row)
+
+    db.commit()
+    return response
 
 
-# pip install mysql-connector-python --no-cache-dir
+# python -m quries.dal
+
+# cursor.close()
+# db.close()
