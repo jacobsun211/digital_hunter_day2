@@ -1,45 +1,45 @@
 from fastapi import FastAPI
-from quries.dal import query1
+from quries.dal import movment_calc_of_priority_targets, query2, query3, query4,query5,query6,query7
 
 
 app = FastAPI()
 
 
 
-@app.get('/')
-def que1():
-    response = query1()
+@app.get('/1')
+def movement_of_priority_targets():
+    response = movment_calc_of_priority_targets()
     return {"number of results:":len(response), "results":response}
 
 
-@app.get('/')
+@app.get('/2')
 def que2():
-    response = query1()
+    response = query2()
     return {"number of results:":len(response), "results":response}
 
-@app.get('/')
+@app.get('/3')
 def que3():
-    response = query1()
+    response = query3()
     return {"number of results:":len(response), "results":response}
 
-@app.get('/')
+@app.get('/4')
 def que4():
-    response = query1()
+    response = query4()
     return {"number of results:":len(response), "results":response}
 
-@app.get('/')
+@app.get('/5')
 def que5():
-    response = query1()
+    response = query5()
     return {"number of results:":len(response), "results":response}
 
-@app.get('/')
+@app.get('/6')
 def que6():
-    response = query1()
+    response = query6()
     return {"number of results:":len(response), "results":response}
 
-@app.get('/')
+@app.get('/7')
 def que7():
-    response = query1()
+    response = query7()
     return {"number of results:":len(response), "results":response}
 
 
