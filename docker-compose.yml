@@ -10,6 +10,25 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
       - ./dump.sql:/docker-entrypoint-initdb.d/dump.sql
+    networks:
+    - digital_hunter2
 
+  queries:
+    build:
+      context: .
+      dockerfile: queries/Dockerfile
+    restart: unless-stopped
+    env_file: .env
+    ports:                
+      - "8000:8000"
+    networks:
+    - digital_hunter2
+    depends_on:
+    - mysql
+    
 volumes:
   mysql_data:
+
+networks:
+  digital_hunter2:
+    driver: bridge
