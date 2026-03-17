@@ -4,6 +4,13 @@ from maps_data.DigitalHunter_map import plot_map_with_geometry
 import os
 
 host = os.getenv("SQL_HOST", "localhost")
+port = os.getenv("SQL_PORT", 3306)
+database = os.getenv("SQL_DATABASE", "digital_hunter")
+user = os.getenv("SQL_USER", "root")
+password = os.getenv("SQL_PASSWORD", "root")
+
+
+
 
 db = mysql.connector.connect(
     host=host,
